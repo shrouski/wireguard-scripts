@@ -15,5 +15,7 @@ else
 	echo "Created client config!"
 	echo "Adding peer"
 	sudo wg set wg0 peer $(cat clients/$1/$1.pub) allowed-ips $ip/32
+	sudo wg-quick down wg0
+	sudo wg-quick up wg0
 	qrencode -t ansiutf8 < clients/$1/wg0.conf
 fi
